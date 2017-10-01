@@ -27,8 +27,7 @@ class CommandExecutor extends Command
     public function execute(array $args = array()){
         $this->args = $args;
         $class = '\nocturne\command\defaults\defaults_' . $this->command;
-        echo $class;
-        if (is_callable("onCommand",$class)){
+        if (class_exists($class)){
             $command = new $class;
             $command->onCommand($this);
             unset($command);
