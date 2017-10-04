@@ -30,17 +30,18 @@ class Logger extends System
     public function info($message)
     {
         $this->setMessageType = self::TYPE_INFO;
-        Console::AddLine($this->formatPrefix("[%H:%i:%s] [#type_info] ") . $message . PHP_EOL);
+        Console::AddLine($this->formatPrefix("[%H:%i:%s] [#type_info] ") . $message);
     }
 
-    public function formatPrefix($format){
-        $search =   array(
-            "%d","%D","%j","%l","%F","%M","%n","%t","%Y","%A","%B","%g","%G","%h","%H","%i","%s","%v","%e","%c",
+    public function formatPrefix($format)
+    {
+        $search = array(
+            "%d", "%D", "%j", "%l", "%F", "%M", "%n", "%t", "%Y", "%A", "%B", "%g", "%G", "%h", "%H", "%i", "%s", "%v", "%e", "%c",
             "#type_info"
-            );
-        $replace =  array_merge(explode("!",date('d!D!j!l!F!M!n!t!Y!A!B!g!G!h!H!i!s!v!e!c')),
+        );
+        $replace = array_merge(explode("!", date('d!D!j!l!F!M!n!t!Y!A!B!g!G!h!H!i!s!v!e!c')),
             array($this->getTypeName(self::TYPE_INFO)));
-        return str_replace($search,$replace,$format);
+        return str_replace($search, $replace, $format);
     }
 
     public function getTypeName($type)

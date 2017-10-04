@@ -41,11 +41,15 @@ class System
 
     public function standByInput(){
         while(true){
-            $strings = trim(fgets(STDIN));
-            $arrayStrings = explode(" ",$strings);
-            $command = $arrayStrings[0];
-            $args = array_splice($arrayStrings,1,count($arrayStrings) - 1);
-            $this->getCommand()->getExecutor($command)->execute($args);
+            echo ">";
+            $strings = trim(fgets(fopen("php://stdin", "r")));
+            if ($strings != ""){
+                $strings = $this->getCommand()->quote($strings);
+                $arrayStrings = explode(" ",$strings);
+                $command = $arrayStrings[0];
+                $args = array_splice($arrayStrings,1,count($arrayStrings) - 1);
+                $this->getCommand()->getExecutor($command)->execute($args);
+            }
         }
     }
 }

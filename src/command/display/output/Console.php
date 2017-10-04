@@ -12,6 +12,6 @@ use nocturne\display\Display;
 class Console extends Display
 {
     public static function AddLine($strings){
-       echo $strings;
+       echo $strings . PHP_EOL;
     }
 }
