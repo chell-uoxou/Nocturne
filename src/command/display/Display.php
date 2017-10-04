@@ -13,10 +13,12 @@ class Display
 {
     const CONSOLE = 0;
 
+    public $prefix;
     private $console;
 
     public function init(){
         $this->console = new Console();
+        $prefix = "[INFO] "; //////
     }
 
     public function getConsole(){

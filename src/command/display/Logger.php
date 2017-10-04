@@ -16,6 +16,8 @@ class Logger extends System
 {
     const SYSTEM = 0;
 
+    const TYPE_INFO = 100;
+
     private $sender;
     private $receiver;
 
@@ -25,7 +27,31 @@ class Logger extends System
         $this->receiver = Display::CONSOLE;
     }
 
-    public function info($message){
-        Console::AddLine($this->getDisplay()->prefix . $message);
+    public function info($message)
+    {
+        $this->setMessageType = self::TYPE_INFO;
+        Console::AddLine($this->formatPrefix("[%H:%i:%s] [#type_info] ") . $message . PHP_EOL);
+    }
+
+    public function formatPrefix($format){
+        $search =   array(
+            "%d","%D","%j","%l","%F","%M","%n","%t","%Y","%A","%B","%g","%G","%h","%H","%i","%s","%v","%e","%c",
+            "#type_info"
+            );
+        $replace =  array_merge(explode("!",date('d!D!j!l!F!M!n!t!Y!A!B!g!G!h!H!i!s!v!e!c')),
+            array($this->getTypeName(self::TYPE_INFO)));
+        return str_replace($search,$replace,$format);
+    }
+
+    public function getTypeName($type)
+    {
+        switch ($type) {
+            case self::TYPE_INFO:
+                return "INFO";
+                break;
+            default:
+                return false;
+                break;
+        }
     }
 }
