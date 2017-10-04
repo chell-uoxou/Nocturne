@@ -8,7 +8,10 @@
 
 
 namespace nocturne {
+
     define("SRC_PATH", __DIR__);
+
+    date_default_timezone_set("Asia/Tokyo");
 
     require_once('Loader.php');
     require_once('System.php');
