@@ -44,7 +44,7 @@ class System
             echo ">";
             $strings = trim(fgets(fopen("php://stdin", "r")));
             if ($strings != ""){
-                $strings = $this->getCommand()->quote($strings);
+//                $strings = $this->getCommand()->quote($strings);
                 $arrayStrings = explode(" ",$strings);
                 $command = $arrayStrings[0];
                 $args = array_splice($arrayStrings,1,count($arrayStrings) - 1);
